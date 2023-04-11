@@ -1,0 +1,46 @@
+/*
+ * File:   newmain.c
+ * Author: Manal
+ *
+ * Created on April 4, 2023, 11:38 PM
+ */
+#pragma config PBADEN	= OFF 
+#pragma config FOSC 	= HS
+#pragma config PWRT 	= OFF
+#pragma config BOR 		= OFF
+#pragma config ICPRT 	= OFF
+#pragma config LVP 		= OFF
+#pragma config WDT 		= OFF
+#pragma config DEBUG	= OFF
+#pragma config CPUDIV	= OSC1_PLL2	
+
+#include<pic18f4550.h>
+#include <xc.h>
+#define _XTAL_FREQ 20000000
+
+
+void main(void) {
+
+char Codes[10] = {0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F,0x67};
+
+TRISA=0x00; //for segment selection.
+TRISB=0x00; //for displaying numbers.
+TRISD=0xFF; //for the switch. 
+
+unsigned int i=4;
+
+PORTA=0x01;
+
+
+while(1)
+{
+    PORTB=Codes[i];
+ if(PORTDbits.RD0==1)
+    i=i+1; 
+        
+    else if (PORTDbits.RD1==1)
+    --i;
+   
+}
+
+}
