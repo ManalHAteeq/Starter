@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+    <script>
+
+        function fetchAndDisplayData() {
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const postList = document.getElementById('postList');
+                    data.forEach(post => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${post.id}: ${post.title} => ${post.body}`;
+                        postList.appendChild(listItem);
+                    });
+                })
+        }
+        fetchAndDisplayData();
+    </script>
+</head>
+
+<body>
+    <h1>API Data Fetching Example</h1>
+    <ul id="postList"></ul>
+</body>
+
+</html>
